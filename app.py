@@ -1,9 +1,11 @@
 import logging
+from logging.config import dictConfig
 
 from flask import Flask, request
 
 from models.cookie import Cookie
 from utils.db_utils import DBUtils
+from utils.logger import LOGGING
 
 logger = logging.getLogger('cookies')
 
@@ -29,4 +31,6 @@ def hello_world():
 
 
 if __name__ == '__main__':
+    dictConfig(LOGGING)
+
     app.run(port=5001)
