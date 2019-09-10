@@ -25,8 +25,12 @@ class Cookie(Base):
     id = Column(BigInteger, primary_key=True, index=True, autoincrement=True)
     cookie = Column(String(800), nullable=True, comment='cookie')
     city = Column(String(500), nullable=True, comment='城市')
+    is_mobile = Column(Boolean, nullable=True, default=0, comment='PC为0 移动端为1')
     create_time = Column(DateTime, default=datetime.now, comment='创建时间')
     update_time = Column(DateTime, default=datetime.now, onupdate=datetime.now, comment='更新时间')
+
+    class info:
+        app_label = 'default'
 
 
 Base.metadata.create_all(engine)  # 创建表结构

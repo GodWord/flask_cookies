@@ -6,7 +6,7 @@ from sqlalchemy.orm import sessionmaker, scoped_session
 
 from setting.setting import DB_SOURCE
 
-logger = logging.getLogger('DBUtils')
+logger = logging.getLogger('db_utils')
 
 
 class DBUtils:

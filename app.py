@@ -1,18 +1,31 @@
+import logging
+
 from flask import Flask, request
 
 from models.cookie import Cookie
-from utils.DBUtils import DBUtils
+from utils.db_utils import DBUtils
+
+logger = logging.getLogger('cookies')
 
 app = Flask(__name__)
+app.debug = False
 
 
 @app.route('/push_cookie', methods=['GET', 'POST'])
-def hello_world():
+def push_cookie():
     if request.method == 'GET':
-        data = dict(request.args)
-        print(data)
-        DBUtils.save_to_db(Cookie, data)
+        try:
+            data = dict(request.args)
+
+            DBUtils.save_to_db(Cookie, data)
+        except Exception as e:
+            logger.error(e)
     return ''
+
+
+@app.route('/', methods=['GET', 'POST'])
+def hello_world():
+    return 'hello world!'
 
 
 if __name__ == '__main__':
