@@ -16,7 +16,7 @@ def push_cookie():
     if request.method == 'GET':
         try:
             data = dict(request.args)
-
+            data['is_mobile'] = eval(data['is_mobile'])
             DBUtils.save_to_db(Cookie, data)
         except Exception as e:
             logger.error(e)
